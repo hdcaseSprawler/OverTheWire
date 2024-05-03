@@ -54,3 +54,13 @@ Level 3 -> 4 - Walkthrough
   SSH: ssh bandit3@bandit.labs.overthewire.org -p 2220
   Password: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 Пароль для следующего уровня хранится в единственном удобочитаемом файле во внутренней директории. Совет: если у вас сломался терминал, попробуйте команду «reset».
+
+  bandit4@bandit:~$ cat inhere/-file07
+  lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+
+Level 4 -> 5 - Walkthrough
+
+  SSH: SSH: ssh bandit4@bandit.labs.overthewire.org -p 2220
+  Password: lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+
+
