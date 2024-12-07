@@ -2,7 +2,7 @@ Bandit
 
 The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.
 
-  ##Level 0 -> 1 - Walkthrough
+  ## Level 0 -> 1 - Walkthrough
 
   SSH: ssh bandit0@bandit.labs.overthewire.org -p 2220
   Password: bandit0
@@ -13,7 +13,7 @@ The Bandit wargame is aimed at absolute beginners. It will teach the basics need
   ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 С помощью этого пароля переходим на следующий уровень
 
-  ##Level 1 -> 2 - Walkthrough
+  ## Level 1 -> 2 - Walkthrough
 
   SSH: ssh bandit1@bandit.labs.overthewire.org -p 2220
   Password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
@@ -23,7 +23,7 @@ The Bandit wargame is aimed at absolute beginners. It will teach the basics need
   263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 Переходим на следующий уровень
 
-  ##Level 2 -> 3 - Walkthrough
+  ## Level 2 -> 3 - Walkthrough
 
   SSH: ssh bandit2@bandit.labs.overthewire.org -p 2220
   Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
@@ -37,7 +37,7 @@ The Bandit wargame is aimed at absolute beginners. It will teach the basics need
   MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 Следующий уровень
 
-  ##Level 3 -> 4 - Walkthrough
+  ## Level 3 -> 4 - Walkthrough
 
   SSH: ssh bandit3@bandit.labs.overthewire.org -p 2220
   Password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
@@ -49,7 +49,7 @@ The Bandit wargame is aimed at absolute beginners. It will teach the basics need
   2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 Далее
 
-  ##Level 4 -> 5 - Walkthrough
+  ## Level 4 -> 5 - Walkthrough
 
   SSH: ssh bandit4@bandit.labs.overthewire.org -p 2220
   Password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
@@ -69,7 +69,7 @@ find ./inhere/ -type f -exec file {} +
 > cat inhere/-file07
 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
-  ##Level 5 -> 6 - Walkthrough
+  ## Level 5 -> 6 - Walkthrough
 
   SSH: SSH: ssh bandit5@bandit.labs.overthewire.org -p 2220
   Password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
@@ -83,7 +83,7 @@ find ./inhere/ -type f -exec file {} +
 > ./inhere/maybehere07/.file2
 HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
-  ##Level 6 -> 7 - Walkthrough
+  ## Level 6 -> 7 - Walkthrough
 
   SSH: SSH: ssh bandit6@bandit.labs.overthewire.org -p 2220
   Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
@@ -109,7 +109,7 @@ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
 > cat /var/lib/dpkg/info/bandit7.password
 morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
-  ##Level 7 -> 8 - Walkthrough
+  ## Level 7 -> 8 - Walkthrough
 
   SSH: SSH: ssh bandit7@bandit.labs.overthewire.org -p 2220
   Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
@@ -124,7 +124,7 @@ grep -A1 "millionth" /path/to/data.txt | head -n1
 > grep -A1 "millionth" /path/to/data.txt | head -n1
 millionth	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
-  ##Level 8 -> 9 - Walkthrough
+  ## Level 8 -> 9 - Walkthrough
 
   SSH: SSH: ssh bandit8@bandit.labs.overthewire.org -p 2220
   Password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
@@ -136,7 +136,7 @@ millionth	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
 
-  ##Level 9 -> 10 - Walkthrough
+  ## Level 9 -> 10 - Walkthrough
 
   SSH: SSH: ssh bandit9@bandit.labs.overthewire.org -p 2220
   Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
