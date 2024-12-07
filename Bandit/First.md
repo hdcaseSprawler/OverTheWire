@@ -71,7 +71,7 @@ find ./inhere/ -type f -exec file {} +
 
   ## Level 5 -> 6 - Walkthrough
 
-  SSH: SSH: ssh bandit5@bandit.labs.overthewire.org -p 2220
+  SSH: ssh bandit5@bandit.labs.overthewire.org -p 2220
   Password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 Пароль находится в файле, отвечающем требованиям:
 - human-readable
@@ -111,7 +111,7 @@ morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
   ## Level 7 -> 8 - Walkthrough
 
-  SSH: SSH: ssh bandit7@bandit.labs.overthewire.org -p 2220
+  SSH: ssh bandit7@bandit.labs.overthewire.org -p 2220
   Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 Пароль для следующего уровня хранится в файле data.txt после словф millionth
 
@@ -126,7 +126,7 @@ millionth	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
   ## Level 8 -> 9 - Walkthrough
 
-  SSH: SSH: ssh bandit8@bandit.labs.overthewire.org -p 2220
+  SSH: ssh bandit8@bandit.labs.overthewire.org -p 2220
   Password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 Пароль для следующего уровня хранится в файле data.txt и представляет собой единственную строку текста, которая встречается только один раз
 
@@ -138,11 +138,28 @@ millionth	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
   ## Level 9 -> 10 - Walkthrough
 
-  SSH: SSH: ssh bandit9@bandit.labs.overthewire.org -p 2220
-  Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+  SSH: ssh bandit9@bandit.labs.overthewire.org -p 2220
+  Password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 Пароль для следующего уровня хранится в файле data.txt в виде одной из немногих удобочитаемых строк, которым предшествует несколько символов «=».
 Тут все просто, cat data.txt и нашел вручную пароль, так как не разобрался с командами из за возможности множественных знаков "="
 
 FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
+  ## Level 10 -> 11 - Walkthrough
 
+  SSH: ssh bandit10@bandit.labs.overthewire.org -p 2220
+  Password: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+Пароль для следующего уровня хранится в файле data.txt, который содержит данные в кодировке Base64
+
+Использовал базовую утилиту base64 для декодирования файла:
+> cat data.txt
+> VGhlIHBhc3N3b3JkIGlzIGR0UjE3M2ZaS2IwUlJzREZTR3NnMlJXbnBOVmozcVJyCg==
+> base64 -d data.txt
+> The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+  ## Level 11 -> 12 - Walkthrough
+
+  SSH: ssh bandit10@bandit.labs.overthewire.org -p 2220
+  Password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+Пароль
