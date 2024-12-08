@@ -236,19 +236,72 @@ sshkey.private
 > exit
 
 Получаем sshkey.private с удаленного сервера на свою машину:
-> scp -P 2220 bandit13@bandit.labs.overthewire.org:sshkey.private .
+> scp -P 2220 bandit13@bandit.labs.overthewire.org:sshkey.private . -- scp позволяет копировать файл по защищенному соединению.
 Вводим пароль от уровня
 
 Далее со своей машины заходим на 14 уровень:
-> aksanf@ksanf:~$ ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+> ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
 и получаем предупреждение о доступе к файлу sshkey.private
 > chmod 700 sshkey.private
 
 И заходим на 14 уровень:
 > ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
 
-  ## Level 13 -> 14 - Walkthrough
+  ## Level 14 -> 15 - Walkthrough
 
   SSH: ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
   Password: -
-Пароль
+Пароль для следующего уровня можно получить, отправив пароль текущего уровня на порт 30000 на localhost
+Соответственно, необходимо найти пароль в /etc/bandit_pass/bandit
+> cat /etc/bandit_pass/bandit14 
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+> nc localhost 30000 -- устанавливаем содинение на указанном порту и передаем пароль
+> Correct!
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+  ## Level 15 -> 16 - Walkthrough
+
+  SSH: ssh bandit15@bandit.labs.overthewire.org -p 2220
+  Password: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+Пароль для следующего уровня можно получить, отправив пароль текущего уровня на порт 30001 на локальном хосте с использованием шифрования SSL/TLS.
+Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
+
+> cat /etc/bandit_pass/bandit15
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+> openssl s_client -connect localhost:30001 -- используется для создания SSL/TLS соединения с localhost:30001 
+Correct!
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+closed
+
+  ## Level 16 -> 17 - Walkthrough
+
+  SSH: ssh bandit16@bandit.labs.overthewire.org -p 2220
+  Password: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Учетные данные для следующего уровня можно получить, отправив пароль текущего уровня на порт на локальном хосте в диапазоне от 31000 до 32000. Сначала выясните, какие из этих портов прослушивает сервер. Затем выясните, какие из них поддерживают SSL/TLS, а какие нет. Есть только один сервер, который предоставит следующие учетные данные, остальные просто отправят вам обратно все, что вы на него отправите.
+
+> cat /etc/bandit_pass/bandit16
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Далее два варианта
+  Первый (Быстрый)
+> nc -zv localhost 31000-32000 -- с помощью netcat сканируем диапазон портов
+Connection to localhost (127.0.0.1) 31046 port [tcp/*] succeeded!
+Connection to localhost (127.0.0.1) 31518 port [tcp/*] succeeded!
+Connection to localhost (127.0.0.1) 31691 port [tcp/*] succeeded!
+Connection to localhost (127.0.0.1) 31790 port [tcp/*] succeeded!
+Connection to localhost (127.0.0.1) 31960 port [tcp/*] succeeded!
+> далее нужно подобрать порт и подключиться
+
+  Второй (удобный)
+> nmap -sV localhost -p 31000-32000
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE     VERSION
+31046/tcp open  echo
+31518/tcp open  ssl/echo -- echo сервер
+31691/tcp open  echo
+31790/tcp open  ssl/unknown -- многообещающий
+31960/tcp open  echo
+
+> openssl s_client -connect localhost:31790
+> 
