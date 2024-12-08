@@ -160,6 +160,95 @@ dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 
   ## Level 11 -> 12 - Walkthrough
 
-  SSH: ssh bandit10@bandit.labs.overthewire.org -p 2220
+  SSH: ssh bandit11@bandit.labs.overthewire.org -p 2220
   Password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+Пароль для следующего уровня хранится в файле data.txt, где все строчные (az) и прописные (AZ) буквы повернуты на 13 позиций
+
+Я использовал онлайн шифр цезаря и сдвинул символы на 13:
+> cat data.txt 
+Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbtaHGlw9D4
+The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+
+  ## Level 12 -> 13 - Walkthrough
+
+  SSH: ssh bandit12@bandit.labs.overthewire.org -p 2220
+  Password: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+Пароль находится в многократно пересжатом файле data.txt и нам необходимо размотать цепочку и выйти на финальный файл:
+
+Создаем рабочую директорию в которой будем производить все манипуляции и копируем туда исходный файл
+> mkdir /tmp/bandit_decomp
+> file data.txt 
+data.txt: ASCII text
+> xxd -r data.txt > binary_data.bin -- преобразуем шестнадцатеричное представление данных обратно в двоичные данные
+> file binary_data.bin 
+binary_data.bin: gzip compressed data, was "data2.bin", last modified: Thu Sep 19 07:08:15 2024, max compression, from Unix, original size modulo 2^32 574
+> file binary_data.bin 
+binary_data.bin: gzip compressed data, was "data2.bin", last modified: Thu Sep 19 07:08:15 2024, max compression, from Unix, original size modulo 2^32 574
+> mv binary_data.bin binary_data.gz -- переименовываем файл в нужный формат
+> gunzip binary_data.gz
+> file binary_data 
+binary_data: bzip2 compressed data, block size = 900k
+> bunzip2 binary_data
+bunzip2: Can't guess original name for binary_data -- using binary_data.out
+> file binary_data.out 
+binary_data.out: gzip compressed data, was "data4.bin", last modified: Thu Sep 19 07:08:15 2024, max compression, from Unix, original size modulo 2^32 20480
+> mv binary_data.out binary_data.gz
+> gunzip binary_data.gz
+> file binary_data 
+binary_data: POSIX tar archive (GNU)
+> mv binary_data binary_data.tar
+> tar xfv binary_data.tar
+data5.bin
+> file data5.bin 
+data5.bin: POSIX tar archive (GNU)
+> mv data5.bin data5.tar
+> tar xfv data5.tar 
+data6.bin
+> file data6.bin 
+data6.bin: bzip2 compressed data, block size = 900k
+> mv data6.bin data6
+> bunzip2 data6
+bunzip2: Can't guess original name for data6 -- using data6.out
+> file data6.out 
+data6.out: POSIX tar archive (GNU)
+> mv data6.out data6.tar
+> tar xfv data6.tar 
+data8.bin
+> file data8.bin 
+data8.bin: gzip compressed data, was "data9.bin", last modified: Thu Sep 19 07:08:15 2024, max compression, from Unix, original size modulo 2^32 49
+> mv data8.bin data8.gz
+> gunzip data8.gz
+> file data8 
+data8: ASCII text
+> cat data8 
+The password is FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+  ## Level 13 -> 14 - Walkthrough
+
+  SSH: ssh bandit13@bandit.labs.overthewire.org -p 2220
+  Password: FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+Пароль для следующего уровня хранится в файле /etc/bandit_pass/bandit14 и может быть прочитан только пользователемbandit14. На этом уровне вы не получаете следующий пароль, но получаете закрытый ключ SSH, который можно использовать для входа на следующий уровень. Примечание. localhost — это имя хоста, которое относится к машине, на которой вы работаете
+
+Убеждаемся в существовании ключа:
+> ls
+sshkey.private
+> exit
+
+Получаем sshkey.private с удаленного сервера на свою машину:
+> scp -P 2220 bandit13@bandit.labs.overthewire.org:sshkey.private .
+Вводим пароль от уровня
+
+Далее со своей машины заходим на 14 уровень:
+> aksanf@ksanf:~$ ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+и получаем предупреждение о доступе к файлу sshkey.private
+> chmod 700 sshkey.private
+
+И заходим на 14 уровень:
+> ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+
+  ## Level 13 -> 14 - Walkthrough
+
+  SSH: ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+  Password: -
 Пароль
